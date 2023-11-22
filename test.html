@@ -1,0 +1,23 @@
+<html>
+  <head> </head>
+  <body>
+    <ul id="list"></ul>
+    <script>
+      window.addEventListener("load", async (event) => {
+        const response = await fetch("http://localhost:8000/items", {
+          headers: {
+            "x-api-key": "JzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlRlc3QiLCJpYXQiOjE1MTYyMzkwMjJ9",
+          },
+        });
+        const content = await response.json();
+        console.log(content);
+
+        const elements = content.forEach((item) => {
+          const element = document.createElement("li");
+          element.appendChild(document.createTextNode(`${item.id} ${item.name} ${item.done}`));
+          document.getElementById("list").appendChild(element);
+        });
+      });
+    </script>
+  </body>
+</html>
